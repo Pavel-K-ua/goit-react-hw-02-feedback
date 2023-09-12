@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {} from './Statistics.styled';
 
 export const Statistics = ({ good, neutral, bad }) => {
   let total = good + neutral + bad;
