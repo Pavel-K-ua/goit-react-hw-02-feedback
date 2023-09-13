@@ -13,6 +13,24 @@ class App extends React.Component {
     this.setState(prev => ({ [e.target.name]: (prev[e.target.name] += 1) }));
   };
 
+  totalFeedback = () => {
+    return this.state.good + this.state.neutral + this.state.bad;
+  };
+
+  positiveFeedback = () => {
+    if (this.totalFeedback()) {
+      return Math.round(
+        ((this.state.good + this.state.neutral) * 100) / this.totalFeedback()
+      );
+    }
+  };
+
+  // let total = good + neutral + bad;
+  // let positive = 0;
+  // if (total) {
+  //   positive = Math.round(((good + neutral) * 100) / total);
+  // }
+
   render() {
     const { good, neutral, bad } = this.state;
     return (
@@ -31,7 +49,13 @@ class App extends React.Component {
           child={
             <>
               {good || neutral || bad ? (
-                <Statistics good={good} neutral={neutral} bad={bad} />
+                <Statistics
+                  good={good}
+                  neutral={neutral}
+                  bad={bad}
+                  total={this.totalFeedback}
+                  positive={this.positiveFeedback}
+                />
               ) : (
                 <Notification message="There is no feedback"></Notification>
               )}

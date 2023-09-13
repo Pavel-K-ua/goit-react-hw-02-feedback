@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Statistics = ({ good, neutral, bad }) => {
-  let total = good + neutral + bad;
-  let positive = 0;
-  if (total) {
-    positive = Math.round(((good + neutral) * 100) / total);
-  }
-
+export const Statistics = ({ good, neutral, bad, total, positive }) => {
   return (
     <>
       <p>
@@ -20,10 +14,10 @@ export const Statistics = ({ good, neutral, bad }) => {
         Bad: <span>{bad}</span>
       </p>
       <p>
-        Total: <span>{total}</span>
+        Total: <span>{total()}</span>
       </p>
       <p>
-        Positive feedback: <span>{positive}%</span>
+        Positive feedback: <span>{positive()}%</span>
       </p>
     </>
   );
@@ -41,6 +35,8 @@ Statistics.propTypes = {
   good: PropTypes.number,
   neutral: PropTypes.number,
   bad: PropTypes.number,
+  total: PropTypes.func,
+  positive: PropTypes.func,
 };
 
 Notification.propTypes = {
