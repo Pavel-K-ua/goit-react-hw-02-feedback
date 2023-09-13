@@ -25,12 +25,6 @@ class App extends React.Component {
     }
   };
 
-  // let total = good + neutral + bad;
-  // let positive = 0;
-  // if (total) {
-  //   positive = Math.round(((good + neutral) * 100) / total);
-  // }
-
   render() {
     const { good, neutral, bad } = this.state;
     return (
